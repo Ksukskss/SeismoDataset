@@ -1,14 +1,51 @@
 #### ПЛАН ####
 1. Изучить инфу #ориентировочный дедлайн? 21 ноября
-   - база ml
+   - SciKit-Learn
    - Polars
    - ObsPy
    - ...пока все?.. 
 2. Настройка окружения #ориентировочный дедлайн? 23 ноября
-3. Подготовка датасета #ориентировочный дедлайн?
-      - Указания точной даты (день)
-5. Модель #линейной регрессии?
+    Лучше всего начать с этого, так что пораньше бы - можно попробовать такой набор для старта:
+   ```bash
+   uv venv --clear --python 3.12
+   uv add polars datasets scikit-learn torch obspy cartopy jupyter
+   ```
+3. Подготовка датасета #ориентировочный дедлайн? 1 декабря
+      - Верификация - можем ли мы верить этому "датасету"? Где найти информацию о цунамогенных землетряссениях?
+      - Знакомство с `git submodule` ?
+      - Выгрузка зеркального каталога для набора данных с ISC (см. ниже) в формате QuakeML.
+      - Разбиение набора данных на подмножества (train, validation, test)
+4. Базовые подходы ML (стартовый фокус):
+   - Naive Bayes (простенький вероятностный)
+   - Линейная регрессия
+   - Логистическая регрессия
+   - Decision trees (бустинг)
 #### СКЛАД РЕСУРСОВ ####
-- https://huggingface.co/datasets/mnemoraorg/seismic-tsunami-event-linkage - датасет 
+- https://huggingface.co/datasets/mnemoraorg/seismic-tsunami-event-linkage - датасет
+- https://www.kaggle.com/datasets/ahmeduzaki/global-earthquake-tsunami-risk-assessment-dataset/code - куча тетрадок для этого же датасета на каггле (есть ли там полезные?)
+- https://www.isc.ac.uk/iscbulletin/search/catalogue/ - выгрузка полноценного каталога землетрясений (CSV / QuakeML)
 - https://developers.google.com/machine-learning/crash-course - структурированный курс от гугл по ml
 - https://education.yandex.ru/handbook/ml - хэндбук от яндекс (база ml)
+
+#### Repo structure (предложение) ####
+```s
+Aboba/
+├── 📁 analysis/            # Obsidian vault - thinking & reasoning
+│   ├── 0.exploration.md
+│   ├── 1.definition.md  
+│   └── ...
+├── 📁 data/                # Normally I keep data separately but the dataset here is small (just a 40 Kb .csv)
+│   ├── 📁 seismic-tsunami-event-linkage   # and since it is on huggingface/kaggle we can use `git submodule` ?
+│   ├── 📁 waveform                        # in contrast - these can be rather big binaries - we can gitignore it.
+│   └── ...
+├── 📁 src/aboba            # Python packaging
+│   ├── __init__.py
+│   ├── utils.py            # Shared code utilities (prototype phase)
+│   └── ...
+├── 📁 workflow/            # Notebooks (code cells only) - execution
+│   ├── 0.exploration.ipynb
+│   ├── 1.definition.ipynb
+│   └── ...
+├── pyproject.toml
+└── README.md
+```
