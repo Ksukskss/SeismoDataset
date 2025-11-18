@@ -9,7 +9,15 @@
     Лучше всего начать с этого, так что пораньше бы - можно попробовать такой набор для старта:
    
    ```bash
-   uv venv --clear --python 3.12
+   #1. Создание виртуального окружения, должен появиться каталог .venv
+   uv venv --clear --python 3.12 
+   #2. Активация
+   source .venv/bin/activate
+   #3. Создать каталог проекта и зайти в него
+   mkdir ~/project/
+   cd ~/project
+   #4. Создание окружения и добавление библиотек
+   uv init
    uv add polars datasets scikit-learn torch obspy cartopy jupyter
    ```
    </details>
