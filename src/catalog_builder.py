@@ -51,9 +51,9 @@ for root, dirs, files in os.walk(BASE):
             "strike2": strike2,
             "dip2": dip2,
             "rake2": rake2,
-            "stf_moy": os.path.join(event_dir, moy),
-            "stf_opt": os.path.join(event_dir, opt),
-            "focal_png": os.path.join(event_dir, png)
+            #"stf_moy": os.path.join(event_dir, moy),
+            #"stf_opt": os.path.join(event_dir, opt),
+            #"focal_png": os.path.join(event_dir, png)
         })
 
 df = pd.DataFrame(rows)
