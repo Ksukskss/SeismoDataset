@@ -1,5 +1,5 @@
 [project]
-name = "tsunami-ml"
+name = "seismic-project"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
@@ -13,3 +13,5 @@ dependencies = [
     "scikit-learn>=1.7.2",
     "torch>=2.9.1",
 ]
+[tool.setuptools.packages.find]
+where = ["src"]

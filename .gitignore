@@ -10,7 +10,7 @@ wheels/
 .ipynb_checkpoints/
 
 #source data
-/data/ALL_MOY_and_OPTI_2025_MAJ_till_31122023/
+/data/
 
 # Virtual environments
 .venv
