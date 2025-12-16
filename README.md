@@ -14,7 +14,7 @@
    <summary>Find deconvolution gif✅<summary> https://www.youtube.com/watch?v=KuXjwB4LzSA <details>
    6. Explore more information abouts SCARDEC steps
    7. <details>
-   <summary>Sort csv + отрисовка функция? выборочно землетрясений (Тохоку)✅ <summary> /src/vizualization.py<details>
+   <summary>Sort csv + отрисовка функция? выборочно землетрясений (Тохоку)✅ <summary> /src/vizualization.py <details>
 #### Задача 1 ####
 Придумать способ (функцию) сопоставлению элементов списка 1 из isc.ac.uk 
    
