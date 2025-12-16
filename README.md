@@ -5,16 +5,20 @@
    
    0. Прочитать статью✅ 
    1. <details>
-   <summary>Разобраться со структурой базы данных✅ </summary> ls /ALL_MOY_and_OPTI_2025_MAJ_till_31122023/FCTs_yymmdd_hhmmss_locate/ contains moy(avarage), opt(optimal) files and .png image of focal mechanism <details>
+      <summary>Разобраться со структурой базы данных✅ </summary> ls /ALL_MOY_and_OPTI_2025_MAJ_till_31122023/FCTs_yymmdd_hhmmss_locate/ contains moy(avarage), opt(optimal) files and .png image of focal mechanism
+   <details>
    2. Извлечь список из 2782 в табличном? формате✅
    3. <details>
-   <summary>Придумать наиболее удобный формат, после анализа 1✅ </summary> .csv <details>
+      <summary>Придумать наиболее удобный формат, после анализа 1✅ </summary> .csv 
+      <details>
    4. Write notes about waves
    5. <details>
-   <summary>Find deconvolution gif✅<summary> https://www.youtube.com/watch?v=KuXjwB4LzSA <details>
+      <summary>Find deconvolution gif✅<summary> https://www.youtube.com/watch?v=KuXjwB4LzSA
+      <details>
    6. Explore more information abouts SCARDEC steps
    7. <details>
-   <summary>Sort csv + отрисовка функция? выборочно землетрясений (Тохоку)✅ <summary> /src/vizualization.py <details>
+      <summary>Sort csv + отрисовка функция? выборочно землетрясений (Тохоку)✅ <summary> /src/vizualization.py
+      <details>
 #### Задача 1 ####
 Придумать способ (функцию) сопоставлению элементов списка 1 из isc.ac.uk 
    
