@@ -1,93 +1,71 @@
-#### Задача -1
-Посмотреть "Ветер крепчает"✅ 
-#### ЗАДАЧА 0 ####
-Знакомство с отправной точкой набора данных (http://scardec.projects.sismo.ipgp.fr) #дедлайн 25 ноября 
-   
-0. Прочитать статью✅
-1. <details>
-   <summary>Разобраться со структурой базы данных✅</summary>
-   /ALL_MOY_and_OPTI_2025_MAJ_till_31122023/FCTs_yymmdd_hhmmss_locate/ contains moy(avarage), opt(optimal) files and .png image of focal mechanism
-</details>
+## The essence
+**Goal:** prepare a substrate for meaningful machine learning (ML) application in seismology - create a polished dataset of marco-seismicity with key earthquake parameters, source time functions (STF) and most importantly waveforms.
 
-2. Извлечь список из 2782 в табличном? формате✅
-3. <details>
-   <summary>Придумать наиболее удобный формат, после анализа 1✅</summary>
-   .csv
-</details>
+*Core sources*: 
++ SCARDEC source time function database
+   + http://scardec.projects.sismo.ipgp.fr/
++ ISC unified catalog macro-seismicity
+   + https://www.isc.ac.uk/iscbulletin/search/catalogue/
+   + Option to filter and download in CSV / QuakeML formats
++ FDSN metadata of various seimological networks
+   + https://fdsn.org/networks/
++ ObsPy clients for downloading waveform data
+   + https://docs.obspy.org/packages/autogen/obspy.clients.fdsn.client.Client.get_waveforms.html
 
-4. Write notes about waves
-5. <details>
-   <summary>Find deconvolution gif✅</summary>
-   https://www.youtube.com/watch?v=KuXjwB4LzSA
-</details>
 
-6. Explore more information abouts SCARDEC steps
-7. <details>
-   <summary>Sort csv + отрисовка функция? выборочно землетрясений (Тохоку)✅</summary>
-   /src/vizualization.py
-</details>
-#### Задача 1 ####
-Придумать способ (функцию) сопоставлению элементов списка 1 из isc.ac.uk 
-   
-#### ПЛАН ####
-1. Изучить инфу #ориентировочный дедлайн? 21 ноября
-   - SciKit-Learn
-   - Polars
-   - ObsPy
-   - ...пока все?.. 
-2. <details>
-   <summary>Настройка окружения ✅</summary> #ориентировочный дедлайн? 23 ноября
-    Лучше всего начать с этого, так что пораньше бы - можно попробовать такой набор для старта:
-   
+## Current focus
++ [ ] Design a function to match source time function and event parameters from the SCARDEC database with information from the ISC unified catalog
+
+### Progress journal (log?)
++ [ ] Get used to seismological notation
++ [ ] Get a good grasp on deconvolution (find the perfect GIF!)
+   +  https://www.youtube.com/watch?v=KuXjwB4LzSA
++ [ ] Explore more information abouts SCARDEC steps
+   + [x] Sort csv 
+   + [x] [Plot](src/visualization.py) specific earthquake:
+      ![2011 Mw=8.8 Tohoku](analysis\inspection\2011-03-11-05-46-24.NEAR-EAST-COAST-OF-HONSHU.Mw-9-0.png)
++ [x] Extract STF database and find the optimal format
+   + CSV table with columns: ...
++ [x] Download STF database and figure out its structure (!2025-11-25)
+   + `/ALL_MOY_and_OPTI_2025_MAJ_till_31122023/FCTs_yymmdd_hhmmss_locate/` contains moy(avarage), opt(optimal) files and .png image of the focal mechanism
++ [x] Read the core article: ***2016* - A new database of source time functions (STFs) extracted from the SCARDEC method** *by Martin Vallée & Vincent Douet* 
+   + `analysis/exploration/2016.Vallee+Douet.STF-database.Els-PEPI`
+   + [Summary](analysis/exploration/2016.Vallee+Douet.STF-database.Els-PEPI.md)
+   + [Full](https://www.sciencedirect.com/science/article/abs/pii/S0031920116300735) - requires subscription (-> gitIgnored!)
++ [x] Setup the enviroment (!2025-11-23)
+
++ [ ] Watch some anime to get a grasp on the earthquake phenomena ^!^
+   + [x] "The Wind Rises" (風立ちぬ - *Kaze Tachinu*) by Hayao Miyazaki (2013, Studio Ghibli)
+   + [ ] "Suzume" (すずめの戸締まり - *Suzume no Tojimari*) by Makoto Shinkai (2022, 	
+CoMix Wave Films)
+
+
+
+## Glossary
++ [Source Time Function (STF)](analysis/definition/STF.md)
+
+
+### HOW-TOs
++ Making a fresh setup
    ```bash
-   #1. Должен появиться каталог .venv
-   uv venv --clear --python 3.12 
-   #2. Активация
-   source .venv/bin/activate
-   #3. Создать каталог проекта и зайти в него
+   # 0. Making a project folder to shack and hack inside it
    mkdir ~/project/
    cd ~/project
-   #4. Создание окружения и добавление библиотек
+   # 1. Initializing UV package manager
    uv init
+   # 2. Making virtual environment with Python 3.12 locally as .venv folder
+   uv venv --clear --python 3.12 
+   # 3. Activating to use it with command-line interface
+   source .venv/bin/activate
+   # 4. Adding necessary libraries
    uv add polars datasets scikit-learn torch obspy cartopy jupyter
    ```
-   </details>
-3. Подготовка датасета #ориентировочный дедлайн? 1 декабря
-      - Верификация - можем ли мы верить этому "датасету"? Где найти информацию о цунамогенных землетряссениях?
-      - Знакомство с `git submodule` ?
-      - Выгрузка зеркального каталога для набора данных с ISC (см. ниже) в формате QuakeML.
-      - Разбиение набора данных на подмножества (train, validation, test)
-4. Базовые подходы ML (стартовый фокус):
-   - Naive Bayes (простенький вероятностный)
-   - Линейная регрессия
-   - Логистическая регрессия
-   - Decision trees (бустинг)
-#### СКЛАД РЕСУРСОВ ####
+
+
+### Discarded ideas (shitty dataset)
 - https://huggingface.co/datasets/mnemoraorg/seismic-tsunami-event-linkage - датасет
 - https://www.kaggle.com/datasets/ahmeduzaki/global-earthquake-tsunami-risk-assessment-dataset/code - куча тетрадок для этого же датасета на каггле (есть ли там полезные?)
-- https://www.isc.ac.uk/iscbulletin/search/catalogue/ - выгрузка полноценного каталога землетрясений (CSV / QuakeML)
+
+### ML-courses stash
 - https://developers.google.com/machine-learning/crash-course - структурированный курс от гугл по ml
 - https://education.yandex.ru/handbook/ml - хэндбук от яндекс (база ml)
-
-#### Repo structure (предложение) ####
-```s
-Aboba/
-├── 📁 analysis/            # Obsidian vault - thinking & reasoning
-│   ├── 0.exploration.md
-│   ├── 1.definition.md  
-│   └── ...
-├── 📁 data/                # Normally I keep data separately but the dataset here is small (just a 40 Kb .csv)
-│   ├── 📁 seismic-tsunami-event-linkage   # and since it is on huggingface/kaggle we can use `git submodule` ?
-│   ├── 📁 waveform                        # in contrast - these can be rather big binaries - we can gitignore it.
-│   └── ...
-├── 📁 src/aboba            # Python packaging
-│   ├── __init__.py
-│   ├── utils.py            # Shared code utilities (prototype phase)
-│   └── ...
-├── 📁 workflow/            # Notebooks (code cells only) - execution
-│   ├── 0.exploration.ipynb
-│   ├── 1.definition.ipynb
-│   └── ...
-├── pyproject.toml
-└── README.md
-```

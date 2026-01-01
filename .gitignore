@@ -1,3 +1,17 @@
+# Avoiding accidentally publishing limited access PDFs on GitHub
+*.pdf
+
+# Obsidian garbage
+.obsidian/*
+analysis/.obsidian/*
+# Anti-ignore non-garbage
+!analysis/.obsidian/app.json
+!analysis/.obsidian/core-plugins.json
+
+# Databases and datasets
+/data/
+
+
 # Python-generated files
 __pycache__/
 *.py[oc]
@@ -6,12 +20,8 @@ dist/
 wheels/
 *.egg-info
 
-# Jupyter 
+# Jupyter garbage
 .ipynb_checkpoints/
-
-#source data
-/data/
 
 # Virtual environments
 .venv
-uv.lock
