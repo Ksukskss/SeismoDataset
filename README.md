@@ -15,7 +15,12 @@
 
 ## Current focus
 + [ ] Design a function to match source time function and event parameters from the SCARDEC database with information from the ISC unified catalog
-
+   + [X] Create a function to request event_ID from ISC based on the specified date interval
+         + /workflow/isc_req_id.py — script takes the start time,the end time and displays relevant event_IDs. Works in the terminal.
+   + [X] Create a function to save xmls from ISC based on the specified ID
+         + /workflow/isc_req_xml.py — script uses isc_req_id.py to get IDs for a certain period, sends a request to ISC for each ID, and saves the files in .xml format
+   + [ ] Create a function to parse and convert .xml files to .csv
+    
 ### Progress journal (log?)
 + [ ] Get used to seismological notation
 + [ ] Get a good grasp on deconvolution (find the perfect GIF!)
@@ -60,7 +65,6 @@ CoMix Wave Films)
    # 4. Adding necessary libraries
    uv add polars datasets scikit-learn torch obspy cartopy jupyter
    ```
-
 
 ### Discarded ideas (shitty dataset)
 - https://huggingface.co/datasets/mnemoraorg/seismic-tsunami-event-linkage - датасет
