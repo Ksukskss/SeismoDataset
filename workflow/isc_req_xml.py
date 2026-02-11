@@ -4,63 +4,62 @@ import os
 import argparse
 import sys
 
-SCRIPT_NAME = "isc_req_id.py"   
-OUTPUT_DIR = "xml_data"
+HOME_DIR = os.path.expanduser("~")
+OUTPUT_DIR = os.path.join(HOME_DIR, "Projects", "seismic_project", "data", "xml_files")
+CURRENT_SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+SEARCH_SCRIPT_NAME = "isc_req_id.py"
+SEARCH_SCRIPT_PATH = os.path.join(CURRENT_SCRIPT_DIR, SEARCH_SCRIPT_NAME)
 
 def run_search_script(start_date, end_date):
     """
     Запускает первый скрипт и парсит его вывод.
-    Поддерживает форматы строк: "12345" и "evid=12345"
+    Ищет строки вида "evid=12345" или просто числа.
     """
-    # Используем sys.executable для запуска того же python, что и текущий скрипт
+    # Проверяем наличие первого скрипта
+    if not os.path.exists(SEARCH_SCRIPT_PATH):
+        print(f"[Error] Не найден файл поиска: {SEARCH_SCRIPT_PATH}")
+        sys.exit(1)
 
-    command = [sys.executable, SCRIPT_NAME, "-start_date", start_date, "-end_date", end_date]
+    command = [sys.executable, SEARCH_SCRIPT_PATH, "-start_date", start_date, "-end_date", end_date]
     
-    print(f"[Master] Запуск поиска через {SCRIPT_NAME}...")
+    print(f"[Master] Запуск {SEARCH_SCRIPT_NAME}...")
     
     try:
-        # capture_output=True перехватывает вывод в stdout
+        # Запускаем и перехватываем вывод
         result = subprocess.run(command, capture_output=True, text=True, check=True)
         
         event_ids = []
         output_lines = result.stdout.splitlines()
-        
-        print(f"[Master] Получен ответ от {SCRIPT_NAME} (анализ строк)...")
 
         for line in output_lines:
             line = line.strip()
-            
-            
             current_id = None
             
-            # 1. Если строка вида "evid=644275307"
+            # Логика парсинга: ищем "evid=..."
             if "evid=" in line:
                 parts = line.split("evid=")
+                # Берем правую часть после равно
                 if len(parts) > 1:
                     candidate = parts[1].strip()
                     if candidate.isdigit():
                         current_id = candidate
             
-            # 2. Если строка просто число "644275307"
+            # Или если строка целиком состоит из цифр
             elif line.isdigit():
                 current_id = line
             
             if current_id:
                 event_ids.append(current_id)
-                # print(f"  -> Найден ID: {current_id}") # Раскомментируйте для отладки
                 
         return event_ids
 
     except subprocess.CalledProcessError as e:
-        print(f"Ошибка при выполнении {SCRIPT_NAME}.")
+        print(f"[Error] Ошибка выполнения скрипта поиска.")
         print("STDERR:", e.stderr)
-        sys.exit(1)
-    except FileNotFoundError:
-        print(f"Не найден файл {SCRIPT_NAME}. Проверьте, что он лежит в этой же папке.")
         sys.exit(1)
 
 def download_event_xml(event_id):
-    """Скачивает XML для конкретного event_id"""
+    """Скачивает XML и сохраняет в целевую папку"""
     url = "https://www.isc.ac.uk/cgi-bin/web-db-run"
     params = {
         'event_id': event_id,
@@ -68,51 +67,52 @@ def download_event_xml(event_id):
         'request': 'COMPREHENSIVE'
     }
     
-    # Создаем имя файла
+    
     filename = os.path.join(OUTPUT_DIR, f"{event_id}.xml")
     
-    # Если файл уже есть, можно пропустить (опционально)
-    # if os.path.exists(filename):
-    #     print(f"[Skip] Файл {filename} уже существует.")
-    #     return
-
     try:
-        print(f"[Download] Скачивание данных для ID {event_id}...")
+        print(f"[Download] ID {event_id} -> {filename}")
         response = requests.get(url, params=params, timeout=30)
         response.raise_for_status()
         
         with open(filename, "wb") as f:
             f.write(response.content)
             
-        print(f"[OK] Сохранено: {filename}")
-        
     except requests.exceptions.RequestException as e:
-        print(f"[Error] Не удалось скачать ID {event_id}: {e}")
+        print(f"[Error] Сбой загрузки ID {event_id}: {e}")
+    except OSError as e:
+        print(f"[Error] Ошибка записи файла {filename}: {e}")
 
 def main():
-    parser = argparse.ArgumentParser(description="Обертка для поиска и скачивания XML событий ISC.")
+    parser = argparse.ArgumentParser(description="Скачивание XML событий ISC в папку project/xml_files")
     parser.add_argument('-s', '--start_date', required=True, help='Дата начала')
     parser.add_argument('-e', '--end_date', required=True, help='Дата конца')
     
     args = parser.parse_args()
     
+    # Создаем папку, если её нет
     if not os.path.exists(OUTPUT_DIR):
-        os.makedirs(OUTPUT_DIR)
+        try:
+            os.makedirs(OUTPUT_DIR)
+            print(f"[Setup] Создана папка: {OUTPUT_DIR}")
+        except OSError as e:
+            print(f"[Error] Не удалось создать папку {OUTPUT_DIR}: {e}")
+            sys.exit(1)
     
-    # 1. Получаем список ID
+    # 1. Получаем ID
     ids = run_search_script(args.start_date, args.end_date)
     
     if not ids:
-        print("[Master] ID событий не найдены (список пуст).")
+        print("[Master] Событий не найдено.")
         return
 
-    print(f"[Master] Всего событий для обработки: {len(ids)}")
+    print(f"[Master] Найдено {len(ids)} событий. Начинаем загрузку.")
     
-    # 2. Скачиваем XML для каждого
+    # 2. Скачиваем
     for eid in ids:
         download_event_xml(eid)
 
-    print("\n[Done] Работа завершена.")
+    print("\n[Done] Все файлы сохранены.")
 
 if __name__ == "__main__":
     main()
