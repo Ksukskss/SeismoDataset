@@ -20,6 +20,7 @@
    + [X] Create a function to save xmls from ISC based on the specified ID
          + /workflow/isc_req_xml.py — script uses isc_req_id.py to get IDs for a certain period, sends a request to ISC for each ID, and saves the files in .xml format
    + [ ] Create a function to parse and convert .xml files to .csv
+   + [ ] Design a function that will summarize the previous functions for a specific event from SCARDEC catalog
     
 ### Progress journal (log?)
 + [ ] Get used to seismological notation
