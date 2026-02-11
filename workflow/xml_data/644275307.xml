@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<q:quakeml xmlns:q="http://quakeml.org/xmlns/quakeml/1.2" xmlns="http://quakeml.org/xmlns/bed/1.2">
+  <eventParameters publicID="smi:ISC/bulletin">
+    <creationInfo>
+      <agencyID>ISC</agencyID>
+      <creationTime>2026-02-11T08:37:31</creationTime>
+    </creationInfo>
+    <description>ISC Bulletin - Catalogue output</description>
+    <event publicID="smi:ISC/evid=644275307">
+      <preferredOriginID>smi:ISC/origid=638554677</preferredOriginID>
+      <description>
+        <text>Kyushu</text>
+        <type>Flinn-Engdahl region</type>
+      </description>
+      <type>earthquake</type>
+      <typeCertainty>known</typeCertainty>
+      <comment>
+        <text>Event not reviewed by the ISC</text>
+      </comment>
+      <creationInfo>
+        <agencyID>ISC</agencyID>
+        <author>ISC</author>
+      </creationInfo>
+      <origin publicID="smi:ISC/origid=638554677">
+        <time>
+          <value>2023-12-30T17:16:22.76Z</value>
+          <uncertainty>0.09</uncertainty>
+        </time>
+        <latitude>
+          <value>32.5562</value>
+        </latitude>
+        <longitude>
+          <value>130.7430</value>
+        </longitude>
+        <depth>
+          <value>10100.0</value>
+        </depth>
+        <quality>
+          <associatedStationCount>10</associatedStationCount>
+        </quality>
+        <creationInfo>
+          <author>JMA</author>
+          <agencyID>JMA</agencyID>
+        </creationInfo>
+      </origin>
+      <magnitude publicID="smi:ISC/magid=647299894">
+        <mag>
+          <value>-0.40</value>
+        </mag>
+        <type>MV</type>
+        <originID>smi:ISC/origid=638554677</originID>
+        <stationCount>10</stationCount>
+        <creationInfo>
+          <author>JMA</author>
+        </creationInfo>
+      </magnitude>
+      <preferredMagnitudeID>smi:ISC/magid=647299894</preferredMagnitudeID>
+    </event>
+  </eventParameters>
+</q:quakeml>
