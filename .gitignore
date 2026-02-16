@@ -1,6 +1,6 @@
 # Avoiding accidentally publishing limited access PDFs on GitHub
 *.pdf
-
+*.png
 # Obsidian garbage
 .obsidian/*
 analysis/.obsidian/*

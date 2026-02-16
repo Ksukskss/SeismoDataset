@@ -29,7 +29,7 @@
 + [ ] Explore more information abouts SCARDEC steps
    + [x] Sort csv 
    + [x] [Plot](src/visualization.py) specific earthquake:
-      ![2011 Mw=8.8 Tohoku](analysis\inspection\2011-03-11-05-46-24.NEAR-EAST-COAST-OF-HONSHU.Mw-9-0.png)
+      ![2011 Mw=8.8 Tohoku](2011-03-11-05-46-24.NEAR-EAST-COAST-OF-HONSHU.Mw-9-0.png)
 + [x] Extract STF database and find the optimal format
    + CSV table with columns: ...
 + [x] Download STF database and figure out its structure (!2025-11-25)
