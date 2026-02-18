@@ -40,17 +40,18 @@ def search_event_ids(dt, lat, lon):
     Шаг 1: Поиск event_id по параметрам времени и места.
     Возвращает список найденных ID.
     """
-    start_dt = dt - timedelta(seconds=1)
-    end_dt = dt + timedelta(seconds=1)
+    start_dt = dt - timedelta(seconds=5)
+    end_dt = dt + timedelta(seconds=5)
     
     params = {
         'request': 'COMPREHENSIVE',
         'out_format': 'CATQuakeML',
         'searchshape': 'RECT',
-        'bot_lat': lat - 1.0,
-        'top_lat': lat + 1.0,
-        'left_lon': lon - 1.0,
-        'right_lon': lon + 1.0,
+        'bot_lat': '',
+        'top_lat': '',
+        'left_lon': '',
+        'right_lon': '',
+        'searchshape': 'GLOBAL',
         'start_year': start_dt.year,
         'start_month': start_dt.month,
         'start_day': start_dt.day,
