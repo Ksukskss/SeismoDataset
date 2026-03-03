@@ -35,12 +35,14 @@ def run_search_script(start_date, end_date):
             line = line.strip()
             current_id = None
             
-            # Логика парсинга: ищем "evid=..."
+            # Логика парсинга: ищем "evid=..." (поддерживаем варианты вроде "evid=307878.xml")
             if "evid=" in line:
                 parts = line.split("evid=")
-                # Берем правую часть после равно
+                # Берем правую часть после равно и чистим от расширения/мусора
                 if len(parts) > 1:
                     candidate = parts[1].strip()
+                    # например: "307878.xml" -> "307878"
+                    candidate = os.path.splitext(candidate)[0]
                     if candidate.isdigit():
                         current_id = candidate
             

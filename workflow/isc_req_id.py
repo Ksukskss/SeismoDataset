@@ -6,11 +6,12 @@ import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta
 
 # --- КОНФИГУРАЦИЯ ---
-BASE_PATH = "/home/ksukskss/Projects/seismic_project/data/ALL_MOY_and_OPTI_2025_MAJ_till_31122023/"
+BASE_PATH = "/home/ksukskss/Projects/seismic_project/data/train/"
 ISC_URL = "https://www.isc.ac.uk/cgi-bin/web-db-run"
 
 # Задержка между запросами, чтобы не заблокировали IP (вежливость к серверу)
 REQUEST_DELAY = 1.0 
+UNSEARCHED = []
 
 def parse_fct_file(filepath):
     """Считывает дату, время и координаты из файла."""
@@ -44,13 +45,8 @@ def search_event_ids(dt, lat, lon):
     end_dt = dt + timedelta(seconds=5)
     
     params = {
-        'request': 'COMPREHENSIVE',
+        'request': 'REVIEWED',
         'out_format': 'CATQuakeML',
-        'searchshape': 'RECT',
-        'bot_lat': '',
-        'top_lat': '',
-        'left_lon': '',
-        'right_lon': '',
         'searchshape': 'GLOBAL',
         'start_year': start_dt.year,
         'start_month': start_dt.month,
@@ -60,7 +56,7 @@ def search_event_ids(dt, lat, lon):
         'end_month': end_dt.month,
         'end_day': end_dt.day,
         'end_time': end_dt.strftime('%H:%M:%S'),
-        'min_mag': 5,
+        'min_mag': 5.8,
         'include_links': 'on' # Нужно для получения ID
     }
     
@@ -84,25 +80,22 @@ def search_event_ids(dt, lat, lon):
 
     except Exception as e:
         print(f"[SEARCH ERROR] Не удалось найти события: {e}")
+        UNSEARCHED.append(dt)
         return []
 
 def download_isc_xml(event_id, output_folder):
     """
     Шаг 2: Скачивание XML для конкретного event_id и сохранение в папку.
     """
+    event_id = event_id.replace('evid', '').replace('=', '').strip()
     params = {
         'event_id': event_id,
-        'out_format': 'CATQuakeML',
-        'request': 'COMPREHENSIVE'
+        'out_format': 'QuakeML',
+        'request': 'REVIEWED',
+        'include_phases': 'on',
     }
-    
-    save_path = os.path.join(output_folder, f"{event_id}.xml")
-    
-    # Если файл уже есть, пропускаем (чтобы экономить время при повторном запуске)
-    if os.path.exists(save_path):
-        print(f"   [SKIP] Файл уже существует: {os.path.basename(save_path)}")
-        return
 
+    save_path = os.path.join(output_folder, f"{event_id}.xml")
     try:
         print(f"   [DOWNLOADING] Скачивание данных для ID {event_id}...")
         response = requests.get(ISC_URL, params=params, timeout=60)
@@ -164,6 +157,9 @@ def main():
             # Делаем паузу перед запросом
             time.sleep(REQUEST_DELAY) 
             download_isc_xml(eid, folder_path)
+
+    if UNSEARCHED:
+        print(f"Не удалось найти события для дат: {UNSEARCHED}")
 
 if __name__ == "__main__":
     main()
