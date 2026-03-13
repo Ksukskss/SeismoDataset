@@ -1,6 +1,9 @@
 # Avoiding accidentally publishing limited access PDFs on GitHub
 *.pdf
 
+#
+seismic_report.txt
+
 # Obsidian garbage
 .obsidian/*
 analysis/.obsidian/*
