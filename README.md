@@ -1,6 +1,9 @@
 ## The essence
 **Goal:** prepare a substrate for meaningful machine learning (ML) application in seismology - create a polished dataset of marco-seismicity with key earthquake parameters, source time functions (STF) and most importantly waveforms.
 
+*Presentation*
+https://docs.google.com/presentation/d/1Wcuf53iJRAo76x6a3W_sBSHDNKlveCVsDQSw0f55qwE/edit?slide=id.g3d20a583b4b_0_1#slide=id.g3d20a583b4b_0_1
+
 *Core sources*: 
 + SCARDEC source time function database
    + http://scardec.projects.sismo.ipgp.fr/
