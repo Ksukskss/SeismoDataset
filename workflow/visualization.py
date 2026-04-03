@@ -5,14 +5,14 @@ def create_stf_image(event_dir_path):
     script_dir = Path(__file__).parent.resolve()
 
     event_dir = Path(event_dir_path).resolve()
-    moy_file = next(event_dir.glob("*moy*"))
+    opt_file = next(event_dir.glob("*opt*"))
 
     times = []
     amplitudes = []
     metadata_text = ""
 
     try:
-        with moy_file.open('r') as f:
+        with opt_file.open('r') as f:
             line1 = f.readline().strip().split()
             line2 = f.readline().strip().split()
 
@@ -63,6 +63,6 @@ def create_stf_image(event_dir_path):
 
     print(f"График сохранен: {output_path}")
 
-EVENT_DIR = "/home/ksukskss/Projects/seismic_project/data/ALL_MOY_and_OPTI_2025_MAJ_till_31122023/FCTs_20110311_054624_NEAR_EAST_COAST_OF_HONSHU__JAPAN/" 
+EVENT_DIR = "/home/ksukskss/Projects/seismic_project/data/train/FCTs_20110311_054624_NEAR_EAST_COAST_OF_HONSHU__JAPAN/" 
 full_path = Path(EVENT_DIR).expanduser()
 create_stf_image(full_path)
