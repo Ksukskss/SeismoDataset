@@ -1,4 +1,26 @@
 ## The essence
+
+**How to install**
+```bash
+git clone https://github.com/Ksukskss/Aboba.git
+```
+Create a data directory:
+```bash
+cd Aboba && mkdir data && cd data
+```
+Download the SCARDEC database:
+```bash
+curl -C - -O http://scardec.projects.sismo.ipgp.fr/sourcefunction_archive_all.tar.bz2 && tar -xjf sourcefunction_archive_all.tar.bz2 && mv ALL_MOY_and_OPTI_2026_MAJ_till_31122024/ events/ && cd ../
+```
+Add data from the ISC:
+```bash
+python workflow/check.py #This creates a report file listing folders that lack ISC data. This may be useful for later verification. The next script uses this specific file to function.
+
+python workflow/search_erorr_correction.py #This downloads the files from the ISC.
+```
+
+
+
 **Goal:** prepare a substrate for meaningful machine learning (ML) application in seismology - create a polished dataset of marco-seismicity with key earthquake parameters, source time functions (STF) and most importantly waveforms.
 
 *Presentation*
