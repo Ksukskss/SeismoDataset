@@ -1,0 +1,64 @@
+# Introduction — статья RJES (SCARDEC + ISC)
+
+## 1. Introduction
+
+**1.** Earthquake catalogs are the basic data product of seismology. A minimal catalog lists, for each event, the origin time, the hypocentre coordinates and a magnitude. Different users, however, need more: tectonic studies rely on focal mechanisms, location and tomography studies on phase arrival times, and hazard studies on consistent magnitudes. Estimates of the same parameter often differ between agencies. The Bulletin of the International Seismological Centre (ISC) collects these estimates from many agencies and keeps them side by side, together with phase readings and alternative magnitudes [Storchak et al., 2020; International Seismological Centre, 2026].
+
+*Перевод. Каталоги землетрясений — базовый продукт сейсмологии. Минимальный каталог для каждого события содержит время в очаге, координаты гипоцентра и магнитуду. Однако разным пользователям нужно больше: тектоникам — фокальные механизмы, для локации и томографии — времена прихода фаз, для оценки опасности — согласованные магнитуды. Оценки одного и того же параметра у разных агентств часто расходятся. Бюллетень Международного сейсмологического центра (ISC) собирает эти оценки от многих агентств и хранит их рядом, вместе с отсчётами фаз и альтернативными магнитудами.*
+
+**2.** The size of an earthquake is usually described by the scalar seismic moment M0 and the moment magnitude Mw. Both are integral quantities: they say how much moment was released, but not how it was released in time. This information is carried by the source time function (STF), the moment rate as a function of time. Global STF studies show that earthquakes of similar moment differ noticeably in duration and shape, which reflects differences in stress drop and rupture velocity [Vallée, 2013; Courboulex et al., 2016; Chounet et al., 2018]. The STF also gives the radiated energy Er [Vassiliou and Kanamori, 1982], and the energy-to-moment ratio varies widely between events [Choy and Boatwright, 1995]. The classic "tsunami earthquakes" are an extreme case: slow ruptures that produce large tsunamis but weak shaking relative to their moment [Kanamori, 1972]. Thus the STF contains information that the magnitude alone does not.
+
+*Перевод. Размер землетрясения обычно описывают скалярным сейсмическим моментом M0 и моментной магнитудой Mw. Обе величины интегральные: они говорят, сколько момента выделилось, но не говорят, как он выделялся во времени. Эту информацию несёт временная функция источника (STF) — скорость изменения момента во времени. Глобальные исследования STF показывают, что землетрясения с близким моментом заметно различаются по длительности и форме, что отражает различия в сбросе напряжений и скорости разрыва. По STF также вычисляется излучённая энергия Er, а отношение энергии к моменту сильно меняется от события к событию. Классические «цунамигенные землетрясения» — крайний случай: медленные разрывы, которые дают сильное цунами, но слабые сотрясения относительно их момента. Таким образом, STF содержит информацию, которой нет в одной магнитуде.*
+
+**3.** The SCARDEC method deconvolves teleseismic body waves to retrieve, in one procedure, the seismic moment, depth, focal mechanism and STF of an earthquake [Vallée et al., 2011]. Applied to all events of magnitude above 5.8 in the NEIC-PDE catalog since 1992, it produced an open STF database of 2782 events by the end of 2014, which is regularly updated [Vallée and Douet, 2016]. The version used in this study contains 4255 events from January 1992 to December 2023. The SCARDEC catalog is deliberately compact: it does not contain phase arrival times, hypocentre uncertainties or alternative magnitudes (mb, Ms, ML). The ISC Bulletin contains all of these but no STFs. As a result, a user who wants to relate the source process to other event parameters has to combine the two sources by hand.
+
+*Перевод. Метод SCARDEC деконволюцией телесейсмических объёмных волн определяет в одной процедуре сейсмический момент, глубину, фокальный механизм и STF землетрясения. Применённый ко всем событиям с магнитудой больше 5.8 из каталога NEIC-PDE с 1992 года, он дал открытую базу STF из 2782 событий на конец 2014 года, которая регулярно обновляется. Версия, использованная в этой работе, содержит 4255 событий с января 1992 по декабрь 2023 года. Каталог SCARDEC намеренно компактен: в нём нет времён прихода фаз, погрешностей гипоцентра и альтернативных магнитуд (mb, Ms, ML). В бюллетене ISC всё это есть, но нет STF. Поэтому тому, кто хочет связать процесс в очаге с другими параметрами события, приходится объединять два источника вручную.*
+
+**4.** The need for such a combination became evident after the Kamchatka earthquake of 29 July 2025 (Mw 8.8–8.9), one of the largest events of the instrumental era. Its rupture extended about 580 km to the southwest from the Avacha Gulf area, and the source duration was estimated at about 224 s [Chebrov et al., 2026]. Despite the size of the event and the short distance to the coast, the shaking intensity in Petropavlovsk-Kamchatsky was only 6–7 on the SIS-17 scale [Chebrov et al., 2026], lower than standard intensity relations predict. Two explanations have been proposed. The first attributes the low intensity to the nonlinear response of the soft pyroclastic soils beneath the city [Aleshin and Maryatov, 2026; Aleshin, 2026]. The second relates it to the source: a long unilateral rupture that propagated away from the city and consisted of several segments that ruptured one after another [Steblov et al., 2026; Skorkina et al., 2026]. Testing the second explanation requires comparing the source parameters of this event with those of other great earthquakes in a uniform way.
+
+*Перевод. Потребность в таком объединении стала очевидной после Камчатского землетрясения 29 июля 2025 года (Mw 8.8–8.9), одного из крупнейших событий инструментального периода. Разрыв распространился примерно на 580 км к юго-западу от района Авачинского залива, длительность процесса в очаге оценена примерно в 224 с. Несмотря на силу события и близость к побережью, интенсивность сотрясений в Петропавловске-Камчатском составила лишь 6–7 баллов по шкале ШИС-17, меньше, чем предсказывают стандартные соотношения для интенсивности. Предложены два объяснения. Первое связывает низкую интенсивность с нелинейной реакцией мягких пирокластических грунтов под городом. Второе — с очагом: длинный однонаправленный разрыв, уходивший от города и состоявший из нескольких сегментов, вскрывавшихся последовательно. Чтобы проверить второе объяснение, нужно единообразно сравнить параметры очага этого события с параметрами других сильнейших землетрясений.*
+
+**5.** The aim of this study is to build a combined catalog of large earthquakes that links each SCARDEC event to its ISC Bulletin record and adds a set of parameters derived from the STF. These parameters are the source duration and the duration normalized by M0^(1/3), the time to the moment-rate peak, the ratio of peak to mean moment rate, the radiated energy and the ratio Er/M0, and the number of subevents. Section 2 describes the data, Section 3 the matching procedure and the STF parameters, and Section 4 the resulting catalog. As an example of its use, we place the 2025 Kamchatka earthquake among the other events with Mw ≥ 8. The relation between the STF parameters and the observed shaking intensity is left for a separate study.
+
+*Перевод. Цель работы — построить объединённый каталог крупных землетрясений, в котором каждое событие SCARDEC связано с его записью в бюллетене ISC, и добавить набор параметров, вычисленных по STF. Это длительность процесса в очаге и длительность, нормированная на M0^(1/3), время до пика скорости момента, отношение пиковой скорости момента к средней, излучённая энергия и отношение Er/M0, а также число субсобытий. Раздел 2 описывает данные, раздел 3 — процедуру сопоставления и параметры STF, раздел 4 — полученный каталог. В качестве примера использования мы показываем место Камчатского землетрясения 2025 года среди других событий с Mw ≥ 8. Связь параметров STF с наблюдаемой интенсивностью сотрясений оставлена для отдельной работы.*
+
+## References
+
+Aleshin A. S. On the Features of the Kamchatka Earthquake on July 29, 2025 (The View of a Seismological Engineer) // Russian Journal of Earth Sciences. — 2026. — Vol. 26. — ES2011. — https://doi.org/10.2205/2026es001121
+
+Aleshin A. S. and Maryatov A. K. One of the Reasons for the Relatively Low Intensity of Seismic Vibrations in the Territory of Petropavlovsk-Kamchatsky during the July 30, 2025 Earthquake // Doklady Earth Sciences. — 2026. — Vol. 527, no. 2. — P. 41. — https://doi.org/10.1134/S1028334X25610338
+
+Chebrov D. V., Matveenko E. A., Abubakirov I. R., et al. The July 29, 2025 Kamchatka Earthquake, MW 8.9: Examination Based on Regional Data Through End-2025 // Russian Journal of Earth Sciences. — 2026. — Vol. 26. — ES2006. — https://doi.org/10.2205/2026es001116
+
+Chounet A., Vallée M., Causse M. and Courboulex F. Global catalog of earthquake rupture velocities shows anticorrelation between stress drop and rupture velocity // Tectonophysics. — 2018. — Vol. 733. — P. 148–158. — https://doi.org/10.1016/j.tecto.2017.11.005
+
+Choy G. L. and Boatwright J. L. Global patterns of radiated seismic energy and apparent stress // Journal of Geophysical Research: Solid Earth. — 1995. — Vol. 100, B9. — P. 18205–18228. — https://doi.org/10.1029/95JB01969
+
+Courboulex F., Vallée M., Causse M. and Chounet A. Stress-Drop Variability of Shallow Earthquakes Extracted from a Global Database of Source Time Functions // Seismological Research Letters. — 2016. — Vol. 87, no. 4. — P. 912–918. — https://doi.org/10.1785/0220150283
+
+International Seismological Centre. ISC Bulletin. — 2026. — https://doi.org/10.31905/D808B830 — [уточнить: дата обращения к бюллетеню].
+
+Kanamori H. Mechanism of tsunami earthquakes // Physics of the Earth and Planetary Interiors. — 1972. — Vol. 6, no. 5. — P. 346–359. — https://doi.org/10.1016/0031-9201(72)90058-1
+
+Skorkina A. A., Ostapchuk A. A., Chebrov D. V. and Shebalin P. N. The Cascading Nature of the 2025 Kamchatka Megathrust Earthquake According to the Accelerometer Data // Doklady Earth Sciences. — 2026. — Vol. 528, no. 2. — P. 30. — https://doi.org/10.1134/S1028334X26600696
+
+Steblov G. M., et al. Dynamic Model of the Source of the Kamchatka Earthquake of July 29 (30), 2025, Based on GNSS Data // Izvestiya, Physics of the Solid Earth. — 2026. — https://doi.org/10.1134/S1069351326700680 — [уточнить: соавторы с инициалами, том, номер, страницы].
+
+Storchak D. A., Harris J., Brown L., Lieser K., Shumba B. and Di Giacomo D. Rebuild of the Bulletin of the International Seismological Centre (ISC)—part 2: 1980–2010 // Geoscience Letters. — 2020. — Vol. 7. — P. 18. — https://doi.org/10.1186/s40562-020-00164-6
+
+Vallée M. Source time function properties indicate a strain drop independent of earthquake depth and magnitude // Nature Communications. — 2013. — Vol. 4. — P. 2606. — https://doi.org/10.1038/ncomms3606
+
+Vallée M., Charléty J., Ferreira A. M. G., Delouis B. and Vergoz J. SCARDEC: a new technique for the rapid determination of seismic moment magnitude, focal mechanism and source time functions for large earthquakes using body-wave deconvolution // Geophysical Journal International. — 2011. — Vol. 184, no. 1. — P. 338–358. — https://doi.org/10.1111/j.1365-246X.2010.04836.x
+
+Vallée M. and Douet V. A new database of source time functions (STFs) extracted from the SCARDEC method // Physics of the Earth and Planetary Interiors. — 2016. — Vol. 257. — P. 149–157. — https://doi.org/10.1016/j.pepi.2016.05.012
+
+Vassiliou M. S. and Kanamori H. The energy release in earthquakes // Bulletin of the Seismological Society of America. — 1982. — Vol. 72, no. 2. — P. 371–387.
+
+## Что проверить автору
+
+- [ ] Mw Камчатки: в тексте «8.8–8.9» (USGS 8.8, КФ ЕГС 8.9). Если в статье будет своя оценка SCARDEC (около 8.7), стоит добавить её в абзац 4.
+- [ ] Абзац 3: число 4255 и период 1992–2023 взяты из scardec_catalog.csv. Если каталог продлите до 2025 года, цифры нужно обновить. В файле минимальная Mw 5.53, а порог 5.8 относится к магнитуде NEIC-PDE, поэтому текст говорит именно о ней.
+- [ ] Абзац 5: список параметров STF взят из плана. Если что-то (например число субсобытий) не будет посчитано, уберите его из текста.
+- [ ] Абзац 4 написан нейтрально: обе версии (грунт и очаг) приведены без критики. Алешин публикуется в том же RJES и может оказаться рецензентом, поэтому разбор его доводов лучше оставить для «Обсуждения».
+- [ ] Дополнить две ссылки с пометкой [уточнить]: Steblov et al. (соавторы, том, страницы) и дата обращения к бюллетеню ISC.
+- [ ] Сверить оформление со свежими правилами для авторов RJES (rjes.ru): формат взят из опубликованной статьи, а не из самих правил.

@@ -63,6 +63,6 @@ def create_stf_image(event_dir_path):
 
     print(f"График сохранен: {output_path}")
 
-EVENT_DIR = "/home/ksukskss/Projects/seismic_project/data/train/FCTs_20110311_054624_NEAR_EAST_COAST_OF_HONSHU__JAPAN/" 
+EVENT_DIR = "/home/ksukskss/Projects/seismic_project/data/train/FCTs_20100227_063411_NEAR_COAST_OF_CENTRAL_CHILE/" 
 full_path = Path(EVENT_DIR).expanduser()
 create_stf_image(full_path)
