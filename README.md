@@ -6,7 +6,7 @@ git clone https://github.com/Ksukskss/Aboba.git
 ```
 Create a data directory:
 ```bash
-cd Aboba && mkdir data && cd data
+cd SeismoDataset && mkdir data && cd data
 ```
 Download the SCARDEC database:
 ```bash
