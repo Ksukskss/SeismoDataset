@@ -2,7 +2,7 @@
 
 **How to install**
 ```bash
-git clone https://github.com/Ksukskss/Aboba.git
+git clone https://github.com/Ksukskss/SeismoDataset.git
 ```
 Create a data directory:
 ```bash
